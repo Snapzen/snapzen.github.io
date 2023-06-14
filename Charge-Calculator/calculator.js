@@ -39,7 +39,7 @@ const chargeList = [
     { charge: 'Obstruction Of A Court Officer', fine: 25, jail: 5, note: false, stackable: false, stackJailCap: 5, stackFineCap: 25, confiscate: 0 }, 
     { charge: 'Evading Justice', fine: 25, jail: 5, note: false, stackable: false, stackJailCap: 5, stackFineCap: 25, confiscate: 0 },
     { charge: 'Failure To Comply With A Lawful Order', fine: 25, jail: 5, note: false, stackable: false, stackJailCap: 5, stackFineCap: 25, confiscate: 0 }, 
-    { charge: 'Assisting A Fugutive From Justice', fine: 50, jail: 15, note: false, stackable: false, stackJailCap: 15, stackFineCap: 50, confiscate: 0 },
+    { charge: 'Assisting A Fugitive From Justice', fine: 50, jail: 15, note: false, stackable: false, stackJailCap: 15, stackFineCap: 50, confiscate: 0 },
 
     { charge: 'Dueling', fine: 50, jail: 15, note: false, stackable: false, stackJailCap: 15, stackFineCap: 50, confiscate: 1 }, 
     { charge: 'Arson', fine: 75, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 75, confiscate: 2 },
