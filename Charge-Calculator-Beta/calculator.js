@@ -291,7 +291,7 @@ function resetCalc(){
     $('#totalJail').val(0);
     $('#totalFine').val(0);
     $('#confiscate').val("N/A");
-    $('#harsh-mode').prop('checked', false);
+    $('#harsh-mode').prop('checked', true);
     $('#reduce-fine').prop('checked', false);
 }
 
