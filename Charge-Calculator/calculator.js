@@ -23,6 +23,7 @@ const chargeList = [
     { charge: 'Impersonating a Court Officer', fine: 500, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 500, confiscate: 6 }, 
     { charge: 'Arson', fine: 600, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 600, confiscate: 2 },
     { charge: 'Attempted Robbery', fine: 800, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 800, confiscate: 5 }, 
+    { charge: 'Theft', fine: 500, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 500, confiscate: 2 }, 
     { charge: 'Robbery of Stores, Wagons & Oilrig', fine: 850, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 850, confiscate: 5 },
     { charge: 'Robbery of Forts & Banks', fine: 1000, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 1000, confiscate: 5 },
     { charge: 'Attempted Murder', fine: 1000, jail: 15, note: false, stackable: false, stackJailCap: 15, stackFineCap: 1000, confiscate: 1 }, 
