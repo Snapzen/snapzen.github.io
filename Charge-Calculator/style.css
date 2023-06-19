@@ -27,6 +27,9 @@ padding:10px;
     color: #660000;
 }
 
+.hidden {
+    display: none;
+}
 
 footer a{
     color: black;
