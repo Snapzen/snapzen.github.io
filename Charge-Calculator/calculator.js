@@ -225,26 +225,12 @@ function updateTotalFine(){
         var countFine = parseInt($(this).val());
         totalFine = totalFine+countFine;
     });
+    var reduceAmount = parseFloat($('#reduce-fine').val());
+    console.log(reduceAmount);
+    
+    totalFine = totalFine - (totalFine * reduceAmount);
+    totalFineBox.val(totalFine);
 
-    if (totalFine > 500) {
-        if($('#harsh-mode').is(':checked')){
-            if($('#reduce-fine').is(':checked')){
-                totalFine = totalFine - (totalFine * .5);
-            };
-            totalFineBox.val(totalFine);
-        } else {
-            if($('#reduce-fine').is(':checked')){
-                totalFineBox.val(500 - (500 * .5));
-            } else {
-                totalFineBox.val(500);
-            }
-        }
-    } else {
-        if($('#reduce-fine').is(':checked')){
-            totalFine = totalFine - (totalFine * .5);
-        };
-        totalFineBox.val(totalFine);
-    } 
 
 
 }
