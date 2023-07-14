@@ -281,7 +281,7 @@ function resetCalc(){
     $('#totalFine').val(0);
     $('#confiscate').val("N/A");
     $('#harsh-mode').prop('checked', true);
-    $('#reduce-fine').prop('checked', false);
+    $('#reduce-fine').val("0")
 }
 
 function clipboardCharges(){
