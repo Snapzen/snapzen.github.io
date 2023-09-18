@@ -22,7 +22,7 @@ const chargeList = [
     { charge: 'Kidnapping', fine: 500, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 500, confiscate: 0 },
     { charge: 'Impersonating a Court Officer', fine: 500, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 500, confiscate: 6 }, 
     { charge: 'Arson', fine: 600, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 600, confiscate: 2 },
-    { charge: 'Attempted Robbery', fine: 800, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 800, confiscate: 5 }, 
+    { charge: 'Attempted Robbery', fine: 800, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 800, confiscate: 8 }, 
     { charge: 'Theft', fine: 500, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 500, confiscate: 2 }, 
     { charge: 'Robbery of Stores, Wagons & Oilrig', fine: 850, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 850, confiscate: 5 },
     { charge: 'Robbery of Forts & Banks', fine: 1000, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 1000, confiscate: 5 },
@@ -47,7 +47,8 @@ const confiscates = [
     { id: 4, conf: "Proven extorted Goods, Weapons, or Money" },
     { id: 5, conf: "Removal of all Weapons and Contraband. If surrender only removal of Contraband" },
     { id: 6, conf: "Any documents used to falsely pose as a government official" },
-    { id: 7, conf: "Scoped Weapon" }
+    { id: 7, conf: "Scoped Weapon" },
+    { id: 8, conf: "Removal of Contraband" }
 ];
 
 $(document).ready(function(){
