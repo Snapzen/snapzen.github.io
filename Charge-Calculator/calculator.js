@@ -11,7 +11,7 @@ const chargeList = [
     { charge: 'Corruption Of A Court Officer', fine: 450, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 450, confiscate: 0 }, 
     { charge: 'Brandishing', fine: 300, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 300, confiscate: 0 },
     { charge: 'Unlawful Discharge of a Weapon', fine: 350, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 350, confiscate: 1 },
-    { charge: 'Concealment of Identity', fine: 400, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 400, confiscate: 0 },
+    { charge: 'Concealment of Identity', fine: 400, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 400, confiscate: 9 },
     { charge: 'Assault', fine: 400, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 400, confiscate: 0 }, 
     { charge: 'Obstruction Of A Court Officer', fine: 400, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 400, confiscate: 0 },
     { charge: 'Illegal Duelling', fine: 450, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 450, confiscate: 1 }, 
@@ -33,7 +33,7 @@ const chargeList = [
     { charge: 'Murder of a Lawman', fine: 1500, jail: 30, note: false, stackable: false, stackJailCap: 30, stackFineCap: 1500, confiscate: 1 }, 
     { charge: 'Use of a Marksmen in Major Crimes', fine: 700, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 700, confiscate: 7 },
 
-    { charge: 'Class A Contraband', fine: 1000, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 },
+    { charge: 'Class A Contraband', fine: 1000, jail: 10, note: false, stackable: true, stackJailCap: 10, stackFineCap: 9999999, confiscate: 2 },
     { charge: 'Class B Contraband', fine: 150, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }, 
     { charge: 'Class C Contraband', fine: 100, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 },
     { charge: 'Class D Contraband', fine: 50, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }
@@ -48,7 +48,8 @@ const confiscates = [
     { id: 5, conf: "Removal of all Weapons and Contraband. If surrender only removal of Contraband" },
     { id: 6, conf: "Any documents used to falsely pose as a government official" },
     { id: 7, conf: "Scoped Weapon" },
-    { id: 8, conf: "Removal of Contraband" }
+    { id: 8, conf: "Removal of Contraband" },
+    { id: 9, conf: "Removal of Mask(s) / Bandana(s) used and/or in pockets" }
 ];
 
 $(document).ready(function(){
