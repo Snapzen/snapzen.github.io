@@ -34,9 +34,9 @@ const chargeList = [
     { charge: 'Use of a Marksmen in Major Crimes', fine: 700, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 700, confiscate: 7 },
 
     { charge: 'Class A Contraband', fine: 1000, jail: 10, note: false, stackable: true, stackJailCap: 10, stackFineCap: 9999999, confiscate: 2 },
-    { charge: 'Class B Contraband', fine: 150, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }, 
-    { charge: 'Class C Contraband', fine: 100, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 },
-    { charge: 'Class D Contraband', fine: 50, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }
+    { charge: 'Class B Contraband', fine: 100, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }, 
+    { charge: 'Class C Contraband', fine: 50, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 },
+    { charge: 'Class D Contraband', fine: 25, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }
 ];
 
 const confiscates = [
