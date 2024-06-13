@@ -5,7 +5,7 @@ const chargeList = [
     { charge: 'Animal Cruelty', fine: 200, jail: 5, note: false, stackable: false, stackJailCap: 5, stackFineCap: 200, confiscate: 0 },
     { charge: 'Trespassing', fine: 200, jail: 5, note: false, stackable: false, stackJailCap: 5, stackFineCap: 200, confiscate: 0 },
     { charge: 'Criminal Threats', fine: 250, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 250, confiscate: 0 }, 
-    { charge: 'Disorderly Conduct', fine: 115, jail: 15, note: false, stackable: false, stackJailCap: 5, stackFineCap: 150, confiscate: 0 },
+    { charge: 'Disorderly Conduct', fine: 115, jail: 15, note: false, stackable: false, stackJailCap: 15, stackFineCap: 115, confiscate: 0 },
     { charge: 'Crimes against a Local', fine: 250, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 250, confiscate: 0 },
 
     { charge: 'Corruption Of A Court Officer', fine: 450, jail: 10, note: false, stackable: false, stackJailCap: 10, stackFineCap: 450, confiscate: 0 }, 
