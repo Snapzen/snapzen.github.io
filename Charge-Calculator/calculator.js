@@ -338,6 +338,7 @@ function resetCalc(){
     $('#bounty').prop('checked', false);
     $("#head-title").removeClass("bountymode-title");
     $("#head-title").text("Sheriffs Department Charge Calculator");
+    bountymode=false
 }
 
 function clipboardCharges(){
