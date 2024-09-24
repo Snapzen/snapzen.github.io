@@ -63,6 +63,9 @@ footer{
     text-align:center;
     margin-bottom: 0px;
 }
+#bountymode{
+    margin: 0.5em 1em 0 0.7em;
+}
 .command{
     color: black;
     font-size: 0.7em;
@@ -138,4 +141,8 @@ input.stacking:disabled{
     font-weight: bold;
     text-align: center;
     padding-top: 10px;
+}
+
+.bountymode-title{
+    color:#660000;
 }

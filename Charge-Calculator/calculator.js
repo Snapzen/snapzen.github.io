@@ -39,6 +39,8 @@ const chargeList = [
     { charge: 'Class D Contraband', fine: 25, jail: 0, note: false, stackable: true, stackJailCap: 0, stackFineCap: 9999999, confiscate: 2 }
 ];
 
+var bountymode = false;
+
 const confiscates = [
     { id: 0, conf: "N/A" },
     { id: 1, conf: "Removal of Weapon(s) used" },
@@ -60,6 +62,21 @@ $(document).ready(function(){
     var charge = null;
     var fine = null;
 
+
+    $('#bounty').change(function(){
+        if(this.checked){
+            bountymode = true;
+            $("#head-title").addClass("bountymode-title");
+            $("#head-title").text("Charge Calculator Bounty Mode");
+            alert("Bounty Mode Activated - ONLY FOR BOL+")
+        } else {
+            bountymode = false;
+            $("#head-title").removeClass("bountymode-title");
+            $("#head-title").text("Sheriffs Department Charge Calculator");
+        }
+        console.log(bountymode)
+    })
+    
     $('select').on('change', function(){
         var selectedID = this.id;
         idOfSelected = getRowID(selectedID);
@@ -80,6 +97,8 @@ $(document).ready(function(){
             confiscationBox = $("#confiscate-" + idOfSelected);
 
             if (charge.stackable) {
+                stackingBox.prop('disabled', false);
+            } else if (bountymode==true) {
                 stackingBox.prop('disabled', false);
             } else {
                 stackingBox.prop('disabled', true);
@@ -116,6 +135,7 @@ $(document).ready(function(){
     $('.stacking').on('change', function(){
 
         updateFines();
+        updateJail();
         updateTotalJail();
         updateTotalFine();
     });
@@ -136,6 +156,7 @@ $(document).ready(function(){
             console.log("Harsh Mode disabled!");
         }    
         updateFines();
+        updateJail();
         updateTotalFine();
         updateTotalJail();
     });
@@ -159,7 +180,7 @@ function updateFines(){
 
             var fine = calculateFine(charge.fine, stackingBox.val());
 
-            if (fine > charge.stackFineCap){
+            if (fine > charge.stackFineCap && bountymode==false){
                 fineBox.val(charge.stackFineCap);
             } else {
                 fineBox.val(fine);
@@ -174,6 +195,34 @@ function updateFines(){
             }
         }
         updateTotalFine(fine);
+    })
+}
+
+function updateJail(){
+    $('.jail').each(function(){
+        var jailBoxID = $(this).attr("id")
+        var rowID = getRowID(jailBoxID);
+        var jailBox = $("#jail-" + rowID);
+        var stackingBox = $("#stacking-" + rowID);
+        var selectionBox = $("#charge-" + rowID);
+        var selectionValue = selectionBox.val(); 
+
+        var selection = $.grep(chargeList, function(n, i){
+            return n.charge == selectionValue;
+        });
+        if (selection.length > 0){
+            charge = selection[0];
+
+            var jail = calculateJail(charge.jail, stackingBox.val());
+            console.log(jail)
+
+            if (jail > charge.stackJailCap && bountymode==false){
+                jailBox.val(charge.stackJailCap);
+            } else {
+                jailBox.val(jail);
+            }
+        }
+        updateTotalJail(jail);
     })
 }
 
@@ -244,7 +293,9 @@ function updateTotalJail(){
         totalJail = totalJail+countJail;
     })
 
-    if (totalJail > 60) {
+    if (totalJail > 60 && bountymode==true) {
+        totalJailBox.val(totalJail);
+    } else if (totalJail > 60 && bountymode==false) {
         totalJailBox.val(60);
     } else {    
         totalJailBox.val(totalJail);
@@ -283,7 +334,10 @@ function resetCalc(){
     $('#totalFine').val(0);
     $('#confiscate').val("N/A");
     $('#harsh-mode').prop('checked', true);
-    $('#reduce-fine').val("0")
+    $('#reduce-fine').val("0");
+    $('#bounty').prop('checked', false);
+    $("#head-title").removeClass("bountymode-title");
+    $("#head-title").text("Sheriffs Department Charge Calculator");
 }
 
 function clipboardCharges(){
