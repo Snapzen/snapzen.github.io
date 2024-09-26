@@ -78,6 +78,8 @@ const trainitems = [
     " Deer Taxidermy",
     " Coyote Taxidermy",
     " Hunters Gold Eye Cover-Coins",
+    " Coal",
+    " Iron Hammer",
 
 ];
 
@@ -92,7 +94,7 @@ const confiscates = [
     { id: 7, conf: "Scoped Weapon" },
     { id: 8, conf: "Removal of Contraband" },
     { id: 9, conf: "Removal of Mask(s) / Bandana(s) used and/or in pockets" },
-    { id: 10, conf: "Amount of appraisal of possessions taken from person/train and everything related to trains \n (See below for train related items). \r\n" + trainitems },
+    { id: 10, conf: "Removal of all Weapons and Contraband. \n Amount of appraisal of possessions taken from person/train and everything related to trains \n (See below for train related items). \r\n" + trainitems },
 ];
 
 
