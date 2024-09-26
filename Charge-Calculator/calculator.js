@@ -26,6 +26,7 @@ const chargeList = [
     { charge: 'Theft', fine: 500, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 500, confiscate: 2 }, 
     { charge: 'Robbery of Stores, Wagons & Oilrig', fine: 850, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 850, confiscate: 5 },
     { charge: 'Robbery of Forts & Banks', fine: 1000, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 1000, confiscate: 5 },
+    { charge: 'Robbery of a Train', fine: 1000, jail: 20, note: false, stackable: false, stackJailCap: 20, stackFineCap: 1000, confiscate: 10 },
     { charge: 'Attempted Murder', fine: 1000, jail: 15, note: false, stackable: false, stackJailCap: 15, stackFineCap: 1000, confiscate: 1 }, 
     { charge: 'Murder', fine: 1300, jail: 30, note: false, stackable: false, stackJailCap: 30, stackFineCap: 1300, confiscate: 1 },
     { charge: 'Possession of Dynamite', fine: 1500, jail: 30, note: false, stackable: true, stackJailCap: 30, stackFineCap: 1500, confiscate: 2 }, 
@@ -51,7 +52,8 @@ const confiscates = [
     { id: 6, conf: "Any documents used to falsely pose as a government official" },
     { id: 7, conf: "Scoped Weapon" },
     { id: 8, conf: "Removal of Contraband" },
-    { id: 9, conf: "Removal of Mask(s) / Bandana(s) used and/or in pockets" }
+    { id: 9, conf: "Removal of Mask(s) / Bandana(s) used and/or in pockets" },
+    { id: 10, conf: "Amount of appraisal of possessions taken from person/train and everything related to trains." },
 ];
 
 $(document).ready(function(){
