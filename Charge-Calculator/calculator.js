@@ -42,6 +42,45 @@ const chargeList = [
 
 var bountymode = false;
 
+const trainitems = [
+
+    " Wine",
+    " Beer Box",
+    " Vodka",
+    " Whiskey",
+    " Sugar Cubes",
+    " Horse Vitamins",
+    " Horse Rations",
+    " Horse Brushes",
+    " Firewood",
+    " Softwood boards",
+    " Wicker",
+    " Ladder",
+    " Coffins",
+    " Bag of Pastilles",
+    " Blue Paint",
+    " Green Paint",
+    " Red Paint",
+    " Tylenol",
+    " Bandages",
+    " Herbal Remedy",
+    " Wojape Fertilizer",
+    " Blessed Fertilizer",
+    " Barber Mirror",
+    " Copper Bars",
+    " Iron Bars",
+    " Bolts",
+    " Nails",
+    " Pumpkin Pies",
+    " Painting #1",
+    " Rug #1",
+    " Cougar Taxidermy",
+    " Deer Taxidermy",
+    " Coyote Taxidermy",
+    " Hunters Gold Eye Cover-Coins",
+
+];
+
 const confiscates = [
     { id: 0, conf: "N/A" },
     { id: 1, conf: "Removal of Weapon(s) used" },
@@ -53,8 +92,10 @@ const confiscates = [
     { id: 7, conf: "Scoped Weapon" },
     { id: 8, conf: "Removal of Contraband" },
     { id: 9, conf: "Removal of Mask(s) / Bandana(s) used and/or in pockets" },
-    { id: 10, conf: "Amount of appraisal of possessions taken from person/train and everything related to trains." },
+    { id: 10, conf: "Amount of appraisal of possessions taken from person/train and everything related to trains \n (See below for train related items). \r\n" + trainitems },
 ];
+
+
 
 $(document).ready(function(){
     var confiscationBox = null;
@@ -267,6 +308,11 @@ function updateConfiscation(){
     } else { confiscateThis = "N/A"; }
     
     $('#confiscate').val(confiscateThis);
+    if(confiscateThis.includes("trains")){
+        $('#confiscate').attr("rows","15");
+    } else {
+        $('#confiscate').attr("rows","5");
+    }
     console.log(confiscateThis);
 }
 
