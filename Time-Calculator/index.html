@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="On Duty Calculator | Syn County Sheriffs Department" property="og:title" />
+    <meta content="A on duty calculator that makes activity checks easier!" property="og:description" />
+    <meta content="https://snapzen.github.io/" property="og:url" />
+    <meta content="https://i.gyazo.com/aa224d340ae11d17af6189bfb03af488.png" property="og:image" />
+    <meta content="#5c5c5c" data-react-helmet="true" name="theme-color" />
+
+    <title>On Duty Calculator | Syn County Sheriffs Department</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link href="../Charge-Calculator/style.css" rel="stylesheet">   
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea#dataInput { width: 100%; height: 200px; }
+        .output { margin-top: 20px; }
+    </style> 
+</head>
+<body>
+    <div class="container text-center calc-header">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6">
+                <div id="header">
+                    <img src="../Charge-Calculator/synlogo.png" width="80">
+                    <h1 id="head-title">Duty Time Calculator</h1>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <div class="row">
+            <p>Paste the log data below:</p>
+        </div>
+        <div class="row">
+            <textarea id="dataInput" placeholder="Paste duty logs here..."></textarea>
+            <button class="calc-button btn-danger btn" onclick="calculateDutyTime()">Calculate</button>
+        </div>
+        <div class="row">
+            <div class="output calc-title">
+                <h2>Results:</h2>
+                <p id="onDutyTime">Total On Duty Time: </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function parseDateTime(entry) {
+            const dateTimeRegex = /— (\d{4}-\d{2}-\d{2} \d{2}:\d{2})/;
+            const match = entry.match(dateTimeRegex);
+            return match ? new Date(match[1]) : null;
+        }
+
+        function calculateDutyTime() {
+            const data = document.getElementById("dataInput").value;
+            const entries = data.split(/(?=On Duty|Off Duty)/g);
+
+            let onDutyTime = 0;
+            let lastOnDuty = null;
+
+            
+            const parsedEntries = entries.map(entry => {
+                const dateTime = parseDateTime(entry);
+                return { entry, dateTime };
+            }).filter(e => e.dateTime)
+              .sort((a, b) => a.dateTime - b.dateTime);
+
+            
+            parsedEntries.forEach(({ entry, dateTime }) => {
+                if (entry.includes("Is on Duty")) {
+                    lastOnDuty = dateTime;
+                } else if (entry.includes("Is off Duty") && lastOnDuty) {
+                    onDutyTime += dateTime - lastOnDuty;
+                    lastOnDuty = null;
+                }
+            });
+
+            
+            document.getElementById("onDutyTime").textContent = 
+                `Total On Duty Time: ${msToTime(onDutyTime)}`;
+        }
+
+        function msToTime(duration) {
+            const minutes = Math.floor((duration / (1000 * 60)) % 60);
+            const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+            return `${days} days, ${hours} hours, ${minutes} minutes`;
+        }
+    </script>
+</body>
+</html>
