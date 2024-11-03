@@ -52,9 +52,26 @@
     </div>
     <script>
         function parseDateTime(entry) {
-            const dateTimeRegex = /— (\d{4}-\d{2}-\d{2} \d{2}:\d{2})/;
-            const match = entry.match(dateTimeRegex);
-            return match ? new Date(match[1]) : null;
+            
+            const format24hr = /— (\d{4}-\d{2}-\d{2} \d{2}:\d{2})/;
+            
+            const format12hr = /— (\d{2}\/\d{2}\/\d{4} \d{1,2}:\d{2} (AM|PM))/i;
+
+            let match = entry.match(format24hr);
+            if (match) {
+                
+                return new Date(match[1]);
+            }
+
+            match = entry.match(format12hr);
+            if (match) {
+                
+                const dateStr = match[1];
+                return new Date(Date.parse(dateStr));
+            }
+
+            
+            return null;
         }
 
         function calculateDutyTime() {
@@ -81,7 +98,7 @@
                 }
             });
 
-            
+           
             document.getElementById("onDutyTime").textContent = 
                 `Total On Duty Time: ${msToTime(onDutyTime)}`;
         }
