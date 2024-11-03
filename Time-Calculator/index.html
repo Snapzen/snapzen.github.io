@@ -46,31 +46,27 @@
         <div class="row">
             <div class="output calc-title">
                 <h2>Results:</h2>
-                <p id="onDutyTime">Total On Duty Time: </p>
+                <div id="dailyDutyTimes"></div>
+                <p id="totalOnDutyTime">Total On Duty Time: </p>
             </div>
         </div>
     </div>
     <script>
         function parseDateTime(entry) {
-            
             const format24hr = /— (\d{4}-\d{2}-\d{2} \d{2}:\d{2})/;
-            
             const format12hr = /— (\d{2}\/\d{2}\/\d{4} \d{1,2}:\d{2} (AM|PM))/i;
 
             let match = entry.match(format24hr);
             if (match) {
-                
                 return new Date(match[1]);
             }
 
             match = entry.match(format12hr);
             if (match) {
-                
                 const dateStr = match[1];
                 return new Date(Date.parse(dateStr));
             }
 
-            
             return null;
         }
 
@@ -78,29 +74,47 @@
             const data = document.getElementById("dataInput").value;
             const entries = data.split(/(?=On Duty|Off Duty)/g);
 
-            let onDutyTime = 0;
+            let dailyDutyTimes = {}; // Store duty times per day
             let lastOnDuty = null;
+            let totalOnDutyTime = 0;
 
-            
             const parsedEntries = entries.map(entry => {
                 const dateTime = parseDateTime(entry);
                 return { entry, dateTime };
             }).filter(e => e.dateTime)
               .sort((a, b) => a.dateTime - b.dateTime);
 
-            
             parsedEntries.forEach(({ entry, dateTime }) => {
                 if (entry.includes("Is on Duty")) {
                     lastOnDuty = dateTime;
                 } else if (entry.includes("Is off Duty") && lastOnDuty) {
-                    onDutyTime += dateTime - lastOnDuty;
+                    const onDutyTime = dateTime - lastOnDuty;
+
+                    const dutyDate = lastOnDuty.toISOString().split('T')[0];
+                    if (!dailyDutyTimes[dutyDate]) dailyDutyTimes[dutyDate] = 0;
+                    dailyDutyTimes[dutyDate] += onDutyTime;
+
+                    totalOnDutyTime += onDutyTime;
                     lastOnDuty = null;
                 }
             });
 
-           
-            document.getElementById("onDutyTime").textContent = 
-                `Total On Duty Time: ${msToTime(onDutyTime)}`;
+            displayResults(dailyDutyTimes, totalOnDutyTime);
+        }
+
+        function displayResults(dailyDutyTimes, totalOnDutyTime) {
+            const dailyDutyDiv = document.getElementById("dailyDutyTimes");
+            dailyDutyDiv.innerHTML = "<h3>Daily On Duty Times:</h3>";
+
+            Object.keys(dailyDutyTimes).forEach(date => {
+                const timeString = msToTime(dailyDutyTimes[date]);
+                const entry = document.createElement("p");
+                entry.textContent = `${date}: ${timeString}`;
+                dailyDutyDiv.appendChild(entry);
+            });
+
+            document.getElementById("totalOnDutyTime").textContent = 
+                `Total On Duty Time: ${msToTime(totalOnDutyTime)}`;
         }
 
         function msToTime(duration) {
