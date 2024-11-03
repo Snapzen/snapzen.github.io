@@ -53,20 +53,24 @@
     </div>
     <script>
         function parseDateTime(entry) {
-            const format24hr = /— (\d{4}-\d{2}-\d{2} \d{2}:\d{2})/;
-            const format12hr = /— (\d{2}\/\d{2}\/\d{4} \d{1,2}:\d{2} (AM|PM))/i;
+            // Patterns for various date formats
+            const format24hr = /— (\d{4}[-/]\d{2}[-/]\d{2} \d{2}:\d{2})/;  // YYYY-MM-DD or YYYY/MM/DD HH:mm
+            const format12hr = /— (\d{2}[-/]\d{2}[-/]\d{4} \d{1,2}:\d{2} (AM|PM))/i;  // MM/DD/YYYY or MM-DD-YYYY hh:mm AM/PM
+            const formatDayMonthYear = /— (\d{2})[-/](\d{2})[-/](\d{4}) (\d{1,2}:\d{2} (AM|PM)?)/i;  // DD/MM/YYYY or DD-MM-YYYY hh:mm
 
             let match = entry.match(format24hr);
-            if (match) {
-                return new Date(match[1]);
-            }
+            if (match) return new Date(match[1]);  // Parse 24-hour format directly
 
             match = entry.match(format12hr);
+            if (match) return new Date(Date.parse(match[1]));  // Parse 12-hour with AM/PM
+
+            match = entry.match(formatDayMonthYear);  // Match DD/MM/YYYY or DD-MM-YYYY
             if (match) {
-                const dateStr = match[1];
-                return new Date(Date.parse(dateStr));
+                const [_, day, month, year, time] = match;
+                return new Date(`${year}-${month}-${day} ${time}`);
             }
 
+            // If no valid date is found, return null
             return null;
         }
 
