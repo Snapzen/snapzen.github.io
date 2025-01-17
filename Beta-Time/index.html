@@ -12,6 +12,8 @@
   <button onclick="calculateOnDutyTime()">Calculate On-Duty Time</button>
   <h2>Total On-Duty Time:</h2>
   <p id="result">0 hours 0 minutes</p>
+  <h2>Daily On-Duty Time Breakdown:</h2>
+  <ul id="dailyBreakdown"></ul>
 
   <script>
     function parseDate(dateString) {
@@ -80,6 +82,7 @@
 
       let totalMinutes = 0;
       let lastOnDutyTime = null;
+      let dailyMinutes = {};
 
       const timeRegex = /—\s+(.*)/i;
       const onDutyRegex = /Is on Duty\b/i;
@@ -101,6 +104,13 @@
             console.log("Matched Off Duty:", lines[i + 1]);
             const diff = (timestamp - lastOnDutyTime) / 60000; // Difference in minutes
             console.log(`Timestamp Difference: ${diff} minutes`);
+
+            const day = lastOnDutyTime.toISOString().split('T')[0]; // Get the date in YYYY-MM-DD format
+            if (!dailyMinutes[day]) {
+              dailyMinutes[day] = 0;
+            }
+            dailyMinutes[day] += diff;
+
             totalMinutes += diff;
             lastOnDutyTime = null;
           }
@@ -118,6 +128,17 @@
         resultElement.textContent = `${hours} hours ${minutes} minutes`;
       } else {
         console.error("Result element not found");
+      }
+
+      // Update the daily breakdown
+      const dailyBreakdownElement = document.getElementById('dailyBreakdown');
+      dailyBreakdownElement.innerHTML = ''; // Clear any existing content
+      for (const day in dailyMinutes) {
+        const dailyHours = Math.floor(dailyMinutes[day] / 60);
+        const dailyMinutesLeft = dailyMinutes[day] % 60;
+        const li = document.createElement('li');
+        li.textContent = `${day}: ${dailyHours} hours ${dailyMinutesLeft} minutes`;
+        dailyBreakdownElement.appendChild(li);
       }
     }
   </script>
